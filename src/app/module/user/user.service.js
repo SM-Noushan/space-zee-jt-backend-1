@@ -63,7 +63,6 @@ const getUserByIdFromDB = async (id) => {
       errorDetails: { message: "Invalid ID", code: 400 },
     };
   }
-
   const user = await User.findById(id);
   if (!user) {
     return {
@@ -72,7 +71,27 @@ const getUserByIdFromDB = async (id) => {
     };
   }
 
-  return user;
+  let profile;
+  try {
+    profile = await axios.get(UserDetailsApi + `/${user.email}`, {
+      headers: { Authorization: `Bearer ${config.secretToken}` },
+    });
+  } catch (err) {
+    return {
+      error: true,
+      errorDetails: {
+        message: err?.response?.data || "Something went wrong",
+        code: err?.status,
+      },
+    };
+  }
+  return {
+    _id: user._id,
+    username: user.username,
+    email: user.email,
+    bio: profile?.data?.data?.bio,
+    interests: profile?.data?.data?.interests,
+  };
 };
 
 export const UserServices = {
