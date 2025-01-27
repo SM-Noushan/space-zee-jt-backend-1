@@ -4,6 +4,8 @@
 
 Server 1 is a dedicated service for managing sensitive user data, including usernames, emails, and hashed passwords. It communicates securely with Server 2 to handle non-sensitive profile data, ensuring a modular and secure architecture.
 
+> **Note:** [Server 2](https://github.com/SM-Noushan/space-zee-jt-backend-2) is required for a successful trial of Server 1, as it forwards the necessary non-sensitive data for profile creation.
+
 ---
 
 ## Features
