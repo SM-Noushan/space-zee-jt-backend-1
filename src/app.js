@@ -1,5 +1,6 @@
 import cors from "cors";
 import express from "express";
+import router from "./app/routes/index.js";
 
 const app = express();
 
@@ -12,7 +13,7 @@ app.use(
 );
 
 // application routes
-// app.use("/api");
+app.use("/", router);
 
 app.get("/", async (req, res) => {
   res.send("Space Zee: Backend 1");
