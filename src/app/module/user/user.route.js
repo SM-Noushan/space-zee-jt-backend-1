@@ -6,6 +6,6 @@ import validateRequest from "../../middleware/validateRequest.js";
 const router = Router();
 
 router.post("/", validateRequest(validateUserData), UserController.createUser);
-// router.get("/:id");
+router.get("/:id", UserController.getUserById);
 
 export const UserRoutes = router;
