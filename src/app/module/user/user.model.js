@@ -4,7 +4,7 @@ import config from "../../config/index.js";
 
 const userSchema = new Schema({
   username: { type: String, required: true },
-  email: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
   password: { type: String, required: true, select: false },
 });
 
@@ -25,9 +25,9 @@ userSchema.post("save", async function (doc, next) {
 });
 
 // check if user already exists
-userSchema.statics.isUserExistsByUsername = async function (username) {
+userSchema.statics.isUserExistsByEmail = async function (email) {
   const isUserExists = await this.findOne({
-    username: { $regex: username, $options: "i" },
+    email: email.toLowerCase(),
   });
 
   return isUserExists;

@@ -24,8 +24,8 @@ const getUserById = catchAsync(async (req, res) => {
   if (result?.error)
     return errorResponse(
       res,
-      result.errorDetails.message,
-      result.errorDetails.code
+      result?.errorDetails?.message,
+      result?.errorDetails?.code
     );
   sendResponse(res, {
     statusCode: 200,
