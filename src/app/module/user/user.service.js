@@ -31,7 +31,7 @@ const createUserIntoDB = async (payload) => {
       UserDetailsApi,
       { bio, interests, user: email },
       {
-        headers: { Authorization: `Bearer 1${config.secretToken}` },
+        headers: { Authorization: `Bearer ${config.secretToken}` },
       }
     );
     await session.commitTransaction();
